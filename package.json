@@ -1,6 +1,6 @@
 {
   "name": "@termftp/node-ssh",
-  "version": "11.1.4",
+  "version": "11.1.5",
   "description": "SSH2 with Promises",
   "main": "lib/cjs/index.js",
   "typings": "lib/typings/index.d.ts",
@@ -16,7 +16,7 @@
   "scripts": {
     "test": "ava",
     "lint": "(tsc -p . --noEmit) && (eslint . --ext .ts) && (prettier --list-different src/*.ts)",
-    "prepare": "npm run build:clean && npm run build:cjs && npm run build:esm && npm run build:typings",
+    "prepare": "npm run build:clean && npm run build:cjs && npm run build:typings",
     "build:clean": "rm -rf lib",
     "build:esm": "tsc --module es2015 --target es2018 --outDir lib/esm && mv lib/esm/index.js lib/esm/index.mjs",
     "build:cjs": "tsc --module commonjs --target es2018 --outDir lib/cjs",
