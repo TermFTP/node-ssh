@@ -112,7 +112,7 @@ async function makeDirectoryWithSftp(path: string, sftp: SFTPWrapper) {
     throw new Error('mkdir() failed, target already exists and is not a directory')
   }
   try {
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       sftp.mkdir(path, err => {
         if (err) {
           reject(err)
@@ -208,7 +208,7 @@ export class NodeSSH {
     const connection = new SSH2.Client()
     this.connection = connection
 
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       connection.on('error', reject)
       if (config.onKeyboardInteractive) {
         connection.on('keyboard-interactive', config.onKeyboardInteractive)
@@ -446,7 +446,7 @@ export class NodeSSH {
     const sftp = givenSftp || (await this.requestSFTP())
 
     try {
-      await new Promise((resolve, reject) => {
+      await new Promise<void>((resolve, reject) => {
         sftp.fastGet(unixifyPath(remoteFile), localFile, transferOptions || {}, err => {
           if (err) {
             reject(err)
@@ -483,7 +483,7 @@ export class NodeSSH {
     const sftp = givenSftp || (await this.requestSFTP())
 
     const putFile = (retry: boolean) => {
-      return new Promise((resolve, reject) => {
+      return new Promise<void>((resolve, reject) => {
         sftp.fastPut(localFile, unixifyPath(remoteFile), transferOptions || {}, err => {
           if (err == null) {
             resolve()
